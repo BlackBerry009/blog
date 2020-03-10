@@ -1,0 +1,29 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BlackBerry009/blog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BlackBerry009/blog/issues"
+  },
+  "homepage": "https://github.com/BlackBerry009/blog#readme",
+  "dependencies": {
+    "connect-history-api-fallback": "^1.6.0",
+    "express": "^4.17.1",
+    "mysql": "^2.17.1",
+    "svg-captcha": "^1.4.0"
+  },
+  "devDependencies": {
+    "body-parser": "^1.19.0"
+  }
+}
