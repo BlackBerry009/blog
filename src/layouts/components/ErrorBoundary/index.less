@@ -1,0 +1,44 @@
+.error-boundary {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  .avatar {
+    white-space: nowrap;
+    margin-right: 20px;
+    &::before,
+    &::after {
+      content: '';
+      width: 40px;
+      height: 40px;
+      background-image: var(--url);
+      background-size: 40px 40px;
+      display: inline-block;
+    }
+    &::before {
+      clip-path: path(
+        'M 20 40 h -20 v -40 h 20 l -5 5 l 10 5 l -10 5 l 10 5 l -10 5'
+      );
+      margin-right: -14px;
+      transform: rotate(-15deg);
+    }
+    &::after {
+      clip-path: path(
+        'M 20 40 h 20 v -40 h -20 l -5 5 l 10 5 l -10 5 l 10 5 l -10 5'
+      );
+      margin-left: -14px;
+      transform: rotate(15deg);
+    }
+  }
+  big {
+    font-size: 32px;
+    opacity: 1;
+  }
+  pre {
+    max-height: 200px;
+    max-width: 800px;
+    overflow: auto;
+    color: salmon;
+  }
+}
