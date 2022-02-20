@@ -1,8 +1,13 @@
-import React from 'react'
+import { Banner } from './components/Banner'
+import { Contents } from './components/Contents'
 import './index.less'
 
 export default function Home() {
   return (
-    <div>Home</div>
+    <div>
+      <Banner />
+      <Contents />
+
+    </div>
   )
 }
