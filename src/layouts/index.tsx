@@ -4,7 +4,7 @@ import PageHeader from './components/PageHeader';
 
 export default function LayoutPage() {
   return (
-    <Layout>
+    <Layout style={{minWidth: 1200, overflowX: 'hidden'}}>
       <PageHeader />
       <Content className="content">
         <Outlet />
