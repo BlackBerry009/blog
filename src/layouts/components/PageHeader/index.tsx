@@ -1,3 +1,4 @@
+import { SearchOutlined } from '@ant-design/icons';
 import { Input } from 'antd';
 import { NavLink } from 'react-router-dom';
 import './index.less';
@@ -7,7 +8,12 @@ export default function PageHeader() {
     <div className="header">
       <div className="header__logo">Blackberry's blog</div>
       <div className="header__search">
-        <Input />
+        <Input
+          placeholder="Enter key to search"
+          prefix={<SearchOutlined />}
+          allowClear
+          style={{borderRadius: 20}}
+        />
       </div>
       <div className="header__nav">
         <NavLink to="/home">首页</NavLink>
@@ -16,7 +22,6 @@ export default function PageHeader() {
         <NavLink to="/comments">留言</NavLink>
         <NavLink to="/about">关于</NavLink>
         <NavLink to="/friend">友链</NavLink>
-        <NavLink to="/github">github</NavLink>
       </div>
     </div>
   );

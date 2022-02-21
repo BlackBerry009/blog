@@ -1,7 +1,13 @@
 import { Avatar, Card } from 'antd';
 import avatarImg from '@/assets/img/avatar.jpg';
 import './index.less';
-
+import {
+  AlipayCircleOutlined,
+  GithubOutlined,
+  MailOutlined,
+  QqOutlined,
+  WechatOutlined,
+} from '@ant-design/icons';
 type Props = {};
 
 const data = [
@@ -19,7 +25,17 @@ const data = [
 
 export const UserCard = (props: Props) => {
   return (
-    <Card className="user-info">
+    <Card
+      className="user-info"
+      bodyStyle={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: 10,
+      }}
+      hoverable
+    >
       <div className="user-info__avatar">
         <Avatar src={avatarImg} size={80} />
       </div>
@@ -32,7 +48,13 @@ export const UserCard = (props: Props) => {
           </div>
         ))}
       </div>
-      <div className="user-info__icons"></div>
+      <div className="user-info__icons">
+        <GithubOutlined className="user-info__icons__item" />
+        <WechatOutlined className="user-info__icons__item" />
+        <QqOutlined className="user-info__icons__item" />
+        <AlipayCircleOutlined className="user-info__icons__item" />
+        <MailOutlined className="user-info__icons__item" />
+      </div>
     </Card>
   );
 };

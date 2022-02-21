@@ -1,6 +1,13 @@
-import { Carousel } from 'antd';
+import { Carousel, Image } from 'antd';
+import img1 from '@/assets/img/1.jpeg';
+import img2 from '@/assets/img/2.jpeg';
+import img3 from '@/assets/img/3.jpeg';
+import img4 from '@/assets/img/4.jpeg';
+import img5 from '@/assets/img/5.jpeg';
 
 type Props = {};
+
+const ImgList = [img1, img2, img3, img4, img5];
 
 const contentStyle: React.CSSProperties = {
   height: '160px',
@@ -12,16 +19,10 @@ const contentStyle: React.CSSProperties = {
 
 export const Swiper = (props: Props) => {
   return (
-    <Carousel style={{width: 300}}>
-      <div>
-        <h3 style={{...contentStyle}}>1</h3>
-      </div>
-      <div>
-        <h3 style={{...contentStyle}}>2</h3>
-      </div>
-      <div>
-        <h3 style={{...contentStyle}}>3</h3>
-      </div>
+    <Carousel style={{ width: 300, height: 300, borderRadius: 10 }} autoplay dotPosition="right">
+      {ImgList.map((imgUrl, index) => (
+        <Image src={imgUrl} key={index} width={300} height={300}/>
+      ))}
     </Carousel>
   );
 };

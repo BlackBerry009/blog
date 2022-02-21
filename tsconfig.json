@@ -2,7 +2,6 @@
   "compilerOptions": {
     "target": "ESNext",
     "useDefineForClassFields": true,
-    "types": ["vite-plugin-svgr/client"],
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "allowJs": false,
     "skipLibCheck": false,
@@ -21,6 +20,5 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["src", "typings.d.ts"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["src", "typings.d.ts"]
 }

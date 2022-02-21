@@ -11,19 +11,25 @@
   gap: 50px;
   background-color: #fff;
   box-shadow: 0 4px 6px fade(#000, 5);
-  background: #fff;
   height: 50px;
   line-height: 50px;
   text-align: center;
+  position: fixed;
+  z-index: 999;
+  &.transparent {
+    background: hsla(0,0%,100%,0);
+    box-shadow: none;
+  }
   &__logo {
     font-family: BrushFont;
   }
   &__search {
     justify-content: center;
+    margin-left: 500px;
   }
   &__nav {
     display: flex;
-    gap: 50px;
+    gap: 30px;
     margin-left: auto;
     margin-right: 50px;
     a {

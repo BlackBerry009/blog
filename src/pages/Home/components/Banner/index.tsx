@@ -19,7 +19,15 @@ export const Banner = (props: Props) => {
   }, []);
 
   return (
-    <div className="banner" style={{ backgroundImage: `url(${imgUrl})` }}>
+    <div
+      className="banner"
+      style={{
+        backgroundImage: `url(${imgUrl})`,
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center center',
+      }}
+    >
       <div className="banner__logo"></div>
       <div className="banner__slogan"></div>
     </div>
