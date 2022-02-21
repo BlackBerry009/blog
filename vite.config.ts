@@ -7,11 +7,7 @@ import svgrPlugin from 'vite-plugin-svgr'
 export default defineConfig({
   plugins: [
     react(),
-    svgrPlugin({
-      svgrOptions: {
-        icon: true,
-      },
-    }),
+    svgrPlugin(),
   ],
   resolve: {
     dedupe: ['classnames'],
