@@ -8,6 +8,7 @@ import {
   QqOutlined,
   WechatOutlined,
 } from '@ant-design/icons';
+
 type Props = {};
 
 const data = [
@@ -34,10 +35,13 @@ export const UserCard = (props: Props) => {
         alignItems: 'center',
         gap: 10,
       }}
-      hoverable
     >
       <div className="user-info__avatar">
-        <Avatar src={avatarImg} size={80} />
+        <div
+          className="user-info__avatar__bg"
+          style={{ backgroundImage: `url(${avatarImg})` }}
+        ></div>
+        <Avatar className='user-info__avatar--content' src={avatarImg} size={80} />
       </div>
       <div className="user-info__name">小艺术家</div>
       <div className="user-info__publish">

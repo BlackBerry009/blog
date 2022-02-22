@@ -14,7 +14,6 @@ export const Banner = (props: Props) => {
   const [imgUrl, setImgUrl] = useState('');
   useEffect(() => {
     const url = ImgList[Math.floor(Math.random() * 5)];
-    console.log('asdsd', url);
     setImgUrl(url);
   }, []);
 

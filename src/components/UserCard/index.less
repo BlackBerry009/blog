@@ -2,6 +2,27 @@
   width: 300px;
   &__avatar {
     text-align: center;
+    position: relative;
+    &__bg {
+      width: 80px;
+      height: 80px;
+      background-size: 100%;
+      border-radius: 50%;
+      filter: blur(20px) opacity(70%);
+      position: absolute;
+      opacity: .6;
+      transform: scale(0) translateX(-50%);
+    }
+    &:hover {
+      .user-info__avatar--content {
+        transform: scale(1.1);
+        transition: transform .3s ease-in-out;
+      }
+      .user-info__avatar__bg {
+        transform: scale(1);
+        transition: transform .3s ease-in-out;
+      }
+    }
   }
   &__name {
     font-weight: 600;
