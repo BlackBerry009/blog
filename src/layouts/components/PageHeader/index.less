@@ -10,16 +10,27 @@
   width: 100%;
   display: flex;
   gap: 50px;
-  background-color: #fff;
-  box-shadow: 0 4px 6px fade(#000, 5);
   height: 50px;
   line-height: 50px;
   text-align: center;
   position: fixed;
   z-index: 999;
+  background-color: #fff;
+  box-shadow: 0 4px 6px fade(#000, 5);
   &.transparent {
-    background: hsla(0,0%,100%,0);
+    background: hsla(0, 0%, 100%, 0);
     box-shadow: none;
+    &.header__nav {
+      a {
+        text-decoration: none;
+        color: #fff;
+        font-weight: bold;
+        font-size: 15px;
+        &:hover {
+          border-bottom: 2px solid #46bd87;
+        }
+      }
+    }
   }
   &__logo {
     font-family: BrushFont;
@@ -36,6 +47,11 @@
     a {
       text-decoration: none;
       color: #000;
+      font-weight: bold;
+      font-size: 15px;
+      &:hover {
+        border-bottom: 2px solid #46bd87;
+      }
     }
   }
 }

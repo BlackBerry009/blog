@@ -1,18 +1,26 @@
 import { SearchOutlined } from '@ant-design/icons';
+import { useScroll } from 'ahooks';
 import { Input } from 'antd';
+import classnames from 'classnames';
 import { NavLink } from 'react-router-dom';
 import './index.less';
 
 export default function PageHeader() {
+  const scroll = useScroll(document);
+
   return (
-    <div className="header">
-      <div className="header__logo">Blackberry's blog</div>
+    <div
+      className={classnames('header', { transparent: Number(scroll?.top) <= 200 })}
+    >
+      {Number(scroll?.top) > 200 && (
+        <div className="header__logo">Blackberry's blog</div>
+      )}
       <div className="header__search">
         <Input
           placeholder="Enter key to search"
           prefix={<SearchOutlined />}
           allowClear
-          style={{borderRadius: 20}}
+          style={{ borderRadius: 20 }}
         />
       </div>
       <div className="header__nav">
