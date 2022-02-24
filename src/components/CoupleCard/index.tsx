@@ -1,9 +1,8 @@
-import React from 'react'
+import React from 'react';
+import './index.less';
 
-type Props = {}
+type Props = {};
 
 export const CoupleCard = (props: Props) => {
-  return (
-    <div>CoupleCard</div>
-  )
-}
+  return <div className="couple-card">CoupleCard</div>;
+};

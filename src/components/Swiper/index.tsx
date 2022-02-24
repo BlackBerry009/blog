@@ -4,6 +4,7 @@ import img2 from '@/assets/img/2.jpeg';
 import img3 from '@/assets/img/3.jpeg';
 import img4 from '@/assets/img/4.jpeg';
 import img5 from '@/assets/img/5.jpeg';
+import './index.less'
 
 type Props = {};
 
@@ -19,9 +20,20 @@ const contentStyle: React.CSSProperties = {
 
 export const Swiper = (props: Props) => {
   return (
-    <Carousel style={{ width: 300, height: 300, borderRadius: 10 }} autoplay dotPosition="right">
+    <Carousel
+      style={{ width: 300, height: 300, borderRadius: 10 }}
+      autoplay
+      dotPosition="right"
+    >
       {ImgList.map((imgUrl, index) => (
-        <Image src={imgUrl} key={index} width={300} height={300}/>
+        <Image
+          src={imgUrl}
+          key={index}
+          width={300}
+          height={300}
+          preview={false}
+          className='swiper-img'
+        />
       ))}
     </Carousel>
   );
