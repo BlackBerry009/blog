@@ -2,6 +2,7 @@ import { ArticleItem } from '@/components/ArticleItem';
 import { ArticleList } from '@/components/ArticleList';
 import { CoupleCard } from '@/components/CoupleCard';
 import { Swiper } from '@/components/Swiper';
+import { TagCard } from '@/components/TagCard';
 import { UserCard } from '@/components/UserCard';
 import './index.less';
 
@@ -17,6 +18,7 @@ export const Contents = (props: Props) => {
         <UserCard />
         <CoupleCard />
         <Swiper />
+        <TagCard />
       </div>
     </div>
   );

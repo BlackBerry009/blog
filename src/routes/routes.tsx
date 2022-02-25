@@ -1,8 +1,11 @@
 import LayoutPage from '@/layouts';
 import About from '@/pages/About';
 import Article from '@/pages/Article';
+import { Category } from '@/pages/Category';
 import Comments from '@/pages/Comments';
+import { Friends } from '@/pages/Friends';
 import Home from '@/pages/Home';
+import { UpdateLog } from '@/pages/UpdateLog';
 import { RouteObject, useRoutes } from 'react-router-dom';
 
 const routes: RouteObject[] = [
@@ -19,8 +22,16 @@ const routes: RouteObject[] = [
         element: <Home />,
       },
       {
+        path: 'category',
+        element: <Category />,
+      },
+      {
         path: 'article',
         element: <Article />,
+      },
+      {
+        path: 'update-log',
+        element: <UpdateLog />,
       },
       {
         path: 'comments',
@@ -29,6 +40,10 @@ const routes: RouteObject[] = [
       {
         path: 'about',
         element: <About />,
+      },
+      {
+        path: 'friends',
+        element: <Friends />,
       },
     ],
   },

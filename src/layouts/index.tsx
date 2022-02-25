@@ -6,7 +6,7 @@ export default function LayoutPage() {
   return (
     <Layout style={{minWidth: 1200, overflowX: 'hidden'}}>
       <PageHeader />
-      <Content className="content">
+      <Content>
         <Outlet />
       </Content>
     </Layout>

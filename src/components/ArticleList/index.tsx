@@ -11,8 +11,8 @@ export const ArticleList = (props: Props) => {
         flexDirection: 'column',
         gap: 20
     }}>
-    {props.articleList.map(article => (
-        <ArticleItem {...article}/>
+    {props.articleList.map((article, index) => (
+        <ArticleItem {...article} key={index}/>
     ))}
     </div>
   )
