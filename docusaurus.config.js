@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'BlackBerry\'s Site',
   tagline: 'record some notes',
-  url: 'https://your-docusaurus-test-site.com',
+  url: 'https://blackberry009.github.io',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -16,8 +16,9 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'BlackBerry', // Usually your GitHub org/user name.
-  projectName: 'BlackBerry.site', // Usually your repo name.
+  organizationName: 'blackberry009', // Usually your GitHub org/user name.
+  projectName: 'blackberry009.github.io', // Usually your repo name.
+  deploymentBranch: 'gh-pages',
 
   presets: [
     [
