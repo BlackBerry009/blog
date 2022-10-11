@@ -51,10 +51,6 @@ const config = {
     ({
       navbar: {
         title: 'BlackBerry\'s Site',
-        logo: {
-          alt: 'BlackBerry\'s Site Logo',
-          src: 'img/logo.svg',
-        },
         items: [
           {
             type: 'doc',
