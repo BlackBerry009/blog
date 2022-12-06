@@ -1,21 +1,18 @@
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
-import clsx from 'clsx';
 import React from 'react';
-
-import styles from './index.module.css';
 
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   return (
-    <header className={clsx('hero hero--primary banner', styles.heroBanner)}>
-      <div className="container">
-        <h1 className="hero__title">{siteConfig.title}</h1>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
+    <header className="hero bg-[url('../../static/img/home.jpeg')]">
+      <div className="container text-5xl text-white">
+        <h1 className="font-bold">{siteConfig.title}</h1>
+        <p className="text-2xl mb-5">{siteConfig.tagline}</p>
+        <div className="flex justify-center items-center">
           <Link
-            className="button button--secondary button--lg"
+            className="button button--secondary button--lg text-3xl"
             to="/docs/intro">
             Go
           </Link>
