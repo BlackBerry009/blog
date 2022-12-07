@@ -19,7 +19,6 @@ const config = {
   organizationName: "blackberry009", // Usually your GitHub org/user name.
   projectName: "blackberry009.github.io", // Usually your repo name.
   deploymentBranch: "gh-pages",
-
   presets: [
     [
       "classic",
@@ -58,6 +57,7 @@ const config = {
         },
       };
     },
+    'docusaurus-node-polyfills'
   ],
 
   themeConfig:
