@@ -68,31 +68,40 @@ export type SectionId = typeof SectionId[keyof typeof SectionId];
  */
 export const heroData: Hero = {
   imageSrc: heroImage,
-  name: `BlackBerry is my alias.`,
+  name: `Hello World.`,
   description: (
     <>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
-        我是小罗，
-        <strong className="text-stone-100">前端工程师</strong>, 目前工作在
-        <strong className="text-stone-100">上海</strong> ，负责前端的基础建设.
+        I'm BlackBerry, my alias.
+        <br />
+        <strong className="text-stone-100">a front-end engineer</strong>, but I
+        also like python, java ...
+        <br />
       </p>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
-        空闲时间喜欢 <strong className="text-stone-100">健身</strong>,
-        <strong className="text-stone-100">篮球</strong>，
-        <strong className="text-stone-100">音乐</strong>等等
+        now, I work in
+        <strong className="text-stone-100"> Shanghai </strong>
+        <br />I am mainly responsible for the front-end infrastructure and some
+        business.
+      </p>
+      <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
+        In my free time, I like{" "}
+        <strong className="text-stone-100">Sports</strong>,&nbsp;
+        <strong className="text-stone-100">Basketball</strong>,&nbsp;
+        <strong className="text-stone-100">Music</strong> and so on...
       </p>
     </>
   ),
   actions: [
     {
       href: "/docs/intro/",
-      text: "进入",
+      text: "Notes",
       primary: true,
       // Icon: DownloadIcon,
     },
     {
       href: `#${SectionId.Contact}`,
-      text: "联系",
+      text: "Concat",
       primary: false,
     },
   ],
@@ -185,49 +194,49 @@ export const portfolioItems: PortfolioItem[] = [
     title: "Project title 2",
     description: "Give a short description of your project here.",
     url: "https://blackberry009.github.io",
-    image: porfolioImage2,
+    image: porfolioImage1,
   },
   {
     title: "Project title 3",
     description: "Give a short description of your project here.",
     url: "https://blackberry009.github.io",
-    image: porfolioImage3,
+    image: porfolioImage1,
   },
   {
     title: "Project title 4",
     description: "Give a short description of your project here.",
     url: "https://blackberry009.github.io",
-    image: porfolioImage4,
+    image: porfolioImage1,
   },
   {
     title: "Project title 5",
     description: "Give a short description of your project here.",
     url: "https://blackberry009.github.io",
-    image: porfolioImage5,
+    image: porfolioImage1,
   },
   {
     title: "Project title 6",
     description: "Give a short description of your project here.",
     url: "https://blackberry009.github.io",
-    image: porfolioImage6,
+    image: porfolioImage1,
   },
   {
     title: "Project title 7",
     description: "Give a short description of your project here.",
     url: "https://blackberry009.github.io",
-    image: porfolioImage7,
+    image: porfolioImage1,
   },
   {
     title: "Project title 8",
     description: "Give a short description of your project here.",
     url: "https://blackberry009.github.io",
-    image: porfolioImage8,
+    image: porfolioImage1,
   },
   {
     title: "Project title 9",
     description: "Give a short description of your project here.",
     url: "https://blackberry009.github.io",
-    image: porfolioImage9,
+    image: porfolioImage1,
   },
   {
     title: "Project title 10",
@@ -253,7 +262,10 @@ export const education: TimelineItem[] = [
     title: "西安建筑科技大学",
     content: (
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem impedit ipsum, perspiciatis ea ratione fugit veritatis sint nam cupiditate dolor libero optio necessitatibus doloribus voluptas aliquid quo quod deleniti laboriosam.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem
+        impedit ipsum, perspiciatis ea ratione fugit veritatis sint nam
+        cupiditate dolor libero optio necessitatibus doloribus voluptas aliquid
+        quo quod deleniti laboriosam.
       </p>
     ),
   },
@@ -266,7 +278,10 @@ export const experience: TimelineItem[] = [
     title: "FE",
     content: (
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa corporis harum nemo quae eveniet autem? Error atque, laudantium quas modi fugit, dignissimos nihil incidunt magnam, quod voluptatum autem doloribus iusto.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa corporis
+        harum nemo quae eveniet autem? Error atque, laudantium quas modi fugit,
+        dignissimos nihil incidunt magnam, quod voluptatum autem doloribus
+        iusto.
       </p>
     ),
   },
@@ -276,7 +291,10 @@ export const experience: TimelineItem[] = [
     title: "FE",
     content: (
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa corporis harum nemo quae eveniet autem? Error atque, laudantium quas modi fugit, dignissimos nihil incidunt magnam, quod voluptatum autem doloribus iusto.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa corporis
+        harum nemo quae eveniet autem? Error atque, laudantium quas modi fugit,
+        dignissimos nihil incidunt magnam, quod voluptatum autem doloribus
+        iusto.
       </p>
     ),
   },
@@ -315,13 +333,12 @@ export const testimonial: TestimonialSection = {
 
 export const contact: ContactSection = {
   headerText: "联系方式.",
-  description:
-    "期待和大家交流学习.",
+  description: "期待和大家交流学习.",
   items: [
     {
       type: ContactType.Email,
       text: "baymax97@163.com",
-      href: "baymax97@163.com",
+      href: "mailto:baymax97@163.com",
     },
     {
       type: ContactType.Location,

@@ -1,24 +1,17 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { memo, PropsWithChildren } from "react";
+import { useLocation } from "react-router";
 import { HomepageMeta } from "../../data/dataDef";
-
-// type PProps  = NextPage<HomepageMeta> & {
-//   children: JSX.Element
-// }
 
 const Page = memo(
   ({ children, title, description }: PropsWithChildren<HomepageMeta>) => {
-    const r = useRouter();
-    const pathname = r?.asPath || '/'
-
+    const { pathname } = useLocation();
     return (
       <>
         <Head>
           <title>{title}</title>
           <meta content={description} name="description" />
-
-          {/* several domains list the same content, make sure google knows we mean this one. */}
           <link
             href={`https://reactresume.com${pathname}`}
             key="canonical"
@@ -30,7 +23,6 @@ const Page = memo(
           <link href="/apple-touch-icon.png" rel="apple-touch-icon" />
           <link href="/site.webmanifest" rel="manifest" />
 
-          {/* Open Graph : https://ogp.me/ */}
           <meta content={title} property="og:title" />
           <meta content={description} property="og:description" />
           <meta
