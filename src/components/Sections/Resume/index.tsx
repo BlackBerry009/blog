@@ -21,7 +21,7 @@ const Resume: FC = memo(() => {
           ))}
         </ResumeSection>
         <ResumeSection title="Skills">
-          <p className="pb-8">Here you can show a snapshot of your skills to show off to employers</p>
+          <p className="pb-8">前端开发工程师，喜欢但不限于前端，Using code to resolve things and make life easier </p>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {skills.map((skillgroup, index) => (
               <SkillGroup key={`${skillgroup.name}-${index}`} skillGroup={skillgroup} />

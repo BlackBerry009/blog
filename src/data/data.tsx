@@ -74,8 +74,9 @@ export const heroData: Hero = {
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
         I'm BlackBerry, my alias.
         <br />
-        <strong className="text-stone-100">a front-end engineer</strong>, but I
-        also like python, java ...
+        <strong className="text-stone-100">A front-end engineer</strong>, but I
+        also like <strong className="text-stone-100">python</strong>,{" "}
+        <strong className="text-stone-100">java</strong> ...
         <br />
       </p>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
@@ -111,9 +112,13 @@ export const heroData: Hero = {
  */
 export const aboutData: About = {
   profileImageSrc: profilepic,
-  description: `
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti nam, tenetur quidem voluptatibus soluta, accusamus alias officiis enim fuga quos autem dignissimos cupiditate quisquam. Pariatur excepturi magni nam numquam aliquid.
-  `,
+  description: (
+    <>
+      Coding与美食都不可辜负，对事物保持好奇，喜欢拓展知识边界。
+      <br />
+      喜欢旅游，热爱祖国的山川大海，用脚步丈量生活。
+    </>
+  ),
   aboutItems: [
     { label: "Location", text: "中国·上海", Icon: MapIcon },
     { label: "Age", text: "25", Icon: CalendarIcon },
@@ -260,43 +265,22 @@ export const education: TimelineItem[] = [
     date: "2016-2020",
     location: "陕西西安",
     title: "西安建筑科技大学",
-    content: (
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem
-        impedit ipsum, perspiciatis ea ratione fugit veritatis sint nam
-        cupiditate dolor libero optio necessitatibus doloribus voluptas aliquid
-        quo quod deleniti laboriosam.
-      </p>
-    ),
+    content: <p>🐟🐟🐟🐟🐟</p>,
   },
 ];
 
 export const experience: TimelineItem[] = [
   {
     date: "2020-2021",
-    location: "中国·上海",
-    title: "FE",
-    content: (
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa corporis
-        harum nemo quae eveniet autem? Error atque, laudantium quas modi fugit,
-        dignissimos nihil incidunt magnam, quod voluptatum autem doloribus
-        iusto.
-      </p>
-    ),
+    location: "中国·上海 基础设施",
+    title: "途虎养车",
+    content: <p>负责 Node 生态建设，承接部分业务。</p>,
   },
   {
-    date: "2020-2021",
-    location: "中国·上海",
-    title: "FE",
-    content: (
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa corporis
-        harum nemo quae eveniet autem? Error atque, laudantium quas modi fugit,
-        dignissimos nihil incidunt magnam, quod voluptatum autem doloribus
-        iusto.
-      </p>
-    ),
+    date: "2021-2022",
+    location: "中国·上海 基础设施",
+    title: "货拉拉",
+    content: <p>负责 CI/CD 以及周边生态，完善前端工程化平台。承接部分业务</p>,
   },
 ];
 
