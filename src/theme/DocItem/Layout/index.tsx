@@ -1,8 +1,7 @@
 import Layout from '@theme-original/DocItem/Layout';
-import React from 'react';
 import Comment from '../../../components/Comments';
 
-export default function LayoutWrapper(props) {
+export default function LayoutWrapper(props: any) {
   return (
     <>
       <Layout {...props} />
