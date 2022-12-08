@@ -5,11 +5,12 @@ authors: [BlackBerry]
 tags: [node]
 ---
 
+Node 18 已经成为了 LTS 版本，让我们看看都更新了什么
 
-# 内置了Fetch Api
-在 Node 18 版本之前，我们需要安装`node-fetch` 或者 `axios` 去发起请求，在 Node 18中，就不在需要安装这些了。
+##  1.内置了Fetch Api
+在 Node 18 版本之前，我们需要安装 `node-fetch`  或者  `axios`  去发起请求，在 Node 18中，就不在需要安装这些了。
 
-看下载 Node18 中如何发起请求
+看下在 Node18 中如何发起请求
 
 ```js title="index.js"
 fetch('https://jsonplaceholder.typicode.com/todos/1')
@@ -28,7 +29,7 @@ fetch('https://jsonplaceholder.typicode.com/todos/1')
 ```
 
 
-# 内置了 test 模块
+## 2.内置了 test 模块
 之前我们要进行单元测试的时候，需要安装 `Jest`、`Mocha`、`Chai` 等等。
 
 现在我们只需要导入自带的 `test` 模块。
@@ -87,22 +88,22 @@ ok 1 - sum
 # duration_ms 7.669003
 ```
 
-# 支持 Web Streams API
+## 3.支持 Web Streams API
 具体参考[MDN](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API)
 
-# hmr
+## 4.hmr
 现在我们不再需要安装 `nodemon` 插件来监听文件变化 hmr 了，可以使用 `--watch` 来监听文件变动
 
 ```js
 node --watch index.js
 ```
 
-# 支持 import JSON
+## 5.支持 import JSON
 ```js
 import json from './package.json' assert {type: 'json'}
 console.log(json)
 ```
 > 该实验性功能可能会随时移除
 
-### 参考
+## 参考
 > https://nodesource.com/blog/11-features-nodeJS-18-to-try
