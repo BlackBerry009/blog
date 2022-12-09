@@ -65,6 +65,7 @@ const config = {
     ({
       navbar: {
         title: "BlackBerry's Site",
+        hideOnScroll: true,
         items: [
           {
             type: "doc",
@@ -75,8 +76,9 @@ const config = {
           { to: "/blog", label: "文章", position: "left" },
           {
             href: "https://github.com/BlackBerry009/BlackBerry.site",
-            label: "GitHub",
             position: "right",
+            className: 'header-github-link',
+            'aria-label': 'GitHub repository',
           },
         ],
       },
