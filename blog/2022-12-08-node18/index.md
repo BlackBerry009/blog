@@ -1,5 +1,5 @@
 ---
-slug:  node18
+slug:  node_version_18
 title: Node18更新了什么
 authors: [BlackBerry]
 tags: [node]
@@ -17,7 +17,7 @@ fetch('https://jsonplaceholder.typicode.com/todos/1')
   .then(response => response.json())
   .then(json => console.log(json))
 ```
-
+<!--truncate-->
 写完之后我们运行一下
 
 ```js
@@ -103,7 +103,9 @@ node --watch index.js
 import json from './package.json' assert {type: 'json'}
 console.log(json)
 ```
-> 该实验性功能可能会随时移除
+:::caution
+该实验性功能可能会随时移除
+:::
 
 ## 参考
 > https://nodesource.com/blog/11-features-nodeJS-18-to-try

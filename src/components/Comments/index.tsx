@@ -1,6 +1,8 @@
-import Giscus from '@giscus/react';
+import Giscus from "@giscus/react";
+import { useColorMode } from "@docusaurus/theme-common";
 
 export const Comment = () => {
+  const { colorMode } = useColorMode();
   return (
     <div style={{ paddingTop: 50 }}>
       <Giscus
@@ -15,7 +17,7 @@ export const Comment = () => {
         reactionsEnabled="1"
         emitMetadata="0"
         inputPosition="bottom"
-        theme="preferred_color_scheme"
+        theme={colorMode}
         lang="zh-CN"
         loading="lazy"
       />
