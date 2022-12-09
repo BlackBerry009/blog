@@ -1,7 +1,12 @@
+import React from 'react';
 import Layout from '@theme-original/DocItem/Layout';
+import type LayoutType from '@theme/DocItem/Layout';
+import type {WrapperProps} from '@docusaurus/types';
 import Comment from '../../../components/Comments';
 
-export default function LayoutWrapper(props: any) {
+type Props = WrapperProps<typeof LayoutType>;
+
+export default function LayoutWrapper(props: Props): JSX.Element {
   return (
     <>
       <Layout {...props} />
