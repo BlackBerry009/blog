@@ -69,14 +69,20 @@ const config = {
         items: [
           {
             type: "doc",
-            docId: "fe/intro",
-            position: "left",
             label: "前端",
+            position: "left",
+            docId: "fe/intro",
+          },
+          {
+            type: "doc",
+            docId: "backend/Docker/intro",
+            position: "left",
+            label: "后端",
           },
           {
             type: "doc",
             docId: "story/story",
-            position: 'left',
+            position: "left",
             label: "杂记",
           },
           { to: "/blog", label: "文章", position: "left" },
@@ -93,6 +99,7 @@ const config = {
         darkTheme: darkCodeTheme,
       },
       colorMode: {
+        defaultMode: 'light',
         respectPrefersColorScheme: true,
       },
       algolia: {
