@@ -93,6 +93,7 @@ export const heroData: Hero = {
       text: "Notes",
       primary: true,
       Icon: DocumentTextIcon,
+      debounce: true
     },
     {
       href: `#${SectionId.Contact}`,

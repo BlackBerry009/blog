@@ -32,6 +32,7 @@ interface HeroActionItem {
   text: string;
   primary?: boolean;
   Icon?: (props: SVGProps<SVGSVGElement>) => JSX.Element;
+  debounce?: boolean
 }
 
 /**
