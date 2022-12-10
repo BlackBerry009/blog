@@ -89,7 +89,7 @@ export const heroData: Hero = {
   ),
   actions: [
     {
-      href: "/docs/intro/",
+      href: "/docs/fe/intro",
       text: "Notes",
       primary: true,
       Icon: DocumentTextIcon,
