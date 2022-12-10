@@ -57,7 +57,7 @@ const config = {
         },
       };
     },
-    'docusaurus-node-polyfills'
+    "docusaurus-node-polyfills",
   ],
 
   themeConfig:
@@ -69,22 +69,31 @@ const config = {
         items: [
           {
             type: "doc",
-            docId: "intro",
+            docId: "fe/intro",
             position: "left",
             label: "前端",
+          },
+          {
+            type: "doc",
+            docId: "story/story",
+            position: 'left',
+            label: "杂记",
           },
           { to: "/blog", label: "文章", position: "left" },
           {
             href: "https://github.com/BlackBerry009/BlackBerry.site",
             position: "right",
-            className: 'header-github-link',
-            'aria-label': 'GitHub repository',
+            className: "header-github-link",
+            "aria-label": "GitHub repository",
           },
         ],
       },
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
+      },
+      colorMode: {
+        respectPrefersColorScheme: true,
       },
       algolia: {
         // The application ID provided by Algolia
