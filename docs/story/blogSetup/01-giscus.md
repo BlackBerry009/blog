@@ -98,29 +98,32 @@ BlogPostPage 组件 wrap 一下 发现是 100vw 的屏，不是 blog 那一块�
 
 ![blog-mess-style](/img/blog-style.png)
 
-swizzle 一下看 blog 相关的组件有什么，调试一下，发现有个 Container 可以用。
+swizzle 一下看 blog 相关的组件有什么，调试一下，发现有个 Container，BlogPostItem 等等可以用，或多或少都有些 bug，比如：总览文章页，每个文章下面都会显示评论组件，但我只想在文章详情页需要，看起来只有 BlogPostPage 最适合，但是 wrap 一下会有样式问题，所以这里还是选择 eject。
 
 ```sh
-yarn run swizzle @docusaurus/theme-classic BlogPostItem/Container -- --wrap --typescript
+yarn run swizzle @docusaurus/theme-classic BlogPostPage -- --eject --typescript
 ```
 
-```tsx title="theme/BlogPostItem/Container/index.tsx"
-import React from 'react';
-import Container from '@theme-original/BlogPostItem/Container';
-import type ContainerType from '@theme/BlogPostItem/Container';
-import type {WrapperProps} from '@docusaurus/types';
-import Comment from '../../../components/Comments';
 
-type Props = WrapperProps<typeof ContainerType>;
-
-export default function ContainerWrapper(props: Props): JSX.Element {
-  return (
-    <>
-      <Container {...props} />
+```tsx title="theme/BlogPostPage/index.tsx"
+<BlogLayout
+      sidebar={sidebar}
+      toc={
+        !hideTableOfContents && toc.length > 0 ? (
+          <TOC
+            toc={toc}
+            minHeadingLevel={tocMinHeadingLevel}
+            maxHeadingLevel={tocMaxHeadingLevel}
+          />
+        ) : undefined
+      }>
+      <BlogPostItem>{children}</BlogPostItem>
+      // highlight-next-line
       <Comment />
-    </>
-  );
-}
+      {(nextItem || prevItem) && (
+        <BlogPostPaginator nextItem={nextItem} prevItem={prevItem} />
+      )}
+    </BlogLayout>
 ```
 
 至此，完成了添加自定义评论组件，重新运行一下即可 🎉
