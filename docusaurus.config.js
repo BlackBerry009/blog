@@ -41,6 +41,12 @@ const config = {
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
+        sitemap: {
+          changefreq: 'weekly',
+          priority: 0.5,
+          ignorePatterns: ['/tags/**'],
+          filename: 'sitemap.xml',
+        },
       }),
     ],
   ],
@@ -99,7 +105,6 @@ const config = {
         darkTheme: darkCodeTheme,
       },
       colorMode: {
-        defaultMode: 'light',
         respectPrefersColorScheme: true,
       },
       algolia: {
@@ -123,6 +128,7 @@ const config = {
         // Optional: path for search page that enabled by default (`false` to disable it)
         // searchPagePath: "search",
       },
+      
     }),
 };
 
