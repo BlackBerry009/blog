@@ -69,6 +69,16 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      metadata: [
+        {
+          name: 'keywords',
+          content: 'Blackberry,博客,Blog,前端,React,Vue,Webpack,Node.js,Typescript'
+        },
+        {
+          name: 'description',
+          content: '不喜欢旅游的前端篮球一定打的不好'
+        }
+      ],
       navbar: {
         title: "BlackBerry's Site",
         hideOnScroll: true,
@@ -99,6 +109,12 @@ const config = {
             "aria-label": "GitHub repository",
           },
         ],
+      },
+      docs: {
+        sidebar: {
+          hideable: true,
+          autoCollapseCategories: true
+        }
       },
       prism: {
         theme: lightCodeTheme,
