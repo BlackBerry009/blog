@@ -18,7 +18,7 @@ const Header: FC = memo(() => {
       SectionId.Testimonials,
       SectionId.Contact,
     ],
-    []
+    [],
   );
 
   const intersectionHandler = useCallback((section: SectionId | null) => {
@@ -27,7 +27,7 @@ const Header: FC = memo(() => {
 
   useNavObserver(
     navSections.map((section) => `#${section}`).join(","),
-    intersectionHandler
+    intersectionHandler,
   );
 
   return (
@@ -80,7 +80,7 @@ const MobileNav: FC<{
     "p-2 rounded-md first-letter:uppercase transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500";
   const activeClass = classNames(
     baseClass,
-    "bg-neutral-900 text-white font-bold"
+    "bg-neutral-900 text-white font-bold",
   );
   const inactiveClass = classNames(baseClass, "text-neutral-200 font-medium");
   return (

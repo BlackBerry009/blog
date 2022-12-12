@@ -1,8 +1,8 @@
-import {FC, memo} from 'react';
+import { FC, memo } from "react";
 
-import Icon, {IconProps} from './Icon';
+import Icon, { IconProps } from "./Icon";
 
-const InstagramIcon: FC<IconProps> = memo(props => (
+const InstagramIcon: FC<IconProps> = memo((props) => (
   <Icon {...props}>
     <path
       d="M92.6759 0H35.3226C15.8457 0 0 15.8465 0 35.3234V92.6766C0 112.154 15.8457 128 35.3226 128H92.6759C112.154 128 128 112.154 128 92.6766V35.3234C128.001 15.8465 112.154 0 92.6759 0ZM116.644 92.6766C116.644 105.892 105.892 116.643 92.6766 116.643H35.3226C22.1079 116.644 11.3568 105.892 11.3568 92.6766V35.3234C11.3568 22.1086 22.1079 11.3568 35.3226 11.3568H92.6759C105.891 11.3568 116.643 22.1086 116.643 35.3234V92.6766H116.644Z"
