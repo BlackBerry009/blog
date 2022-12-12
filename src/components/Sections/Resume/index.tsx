@@ -1,10 +1,10 @@
-import {FC, memo} from 'react';
+import { FC, memo } from "react";
 
-import {education, experience, SectionId, skills} from '../../../data/data';
-import Section from '../../Layout/Section';
-import ResumeSection from './ResumeSection';
-import {SkillGroup} from './Skills';
-import TimelineItem from './TimelineItem';
+import { education, experience, SectionId, skills } from "../../../data/data";
+import Section from "../../Layout/Section";
+import ResumeSection from "./ResumeSection";
+import { SkillGroup } from "./Skills";
+import TimelineItem from "./TimelineItem";
 
 const Resume: FC = memo(() => {
   return (
@@ -21,10 +21,16 @@ const Resume: FC = memo(() => {
           ))}
         </ResumeSection>
         <ResumeSection title="Skills">
-          <p className="pb-8">前端开发工程师，喜欢但不限于前端，Using code to resolve things and make life easier </p>
+          <p className="pb-8">
+            前端开发工程师，喜欢但不限于前端，Using code to resolve things and
+            make life easier{" "}
+          </p>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {skills.map((skillgroup, index) => (
-              <SkillGroup key={`${skillgroup.name}-${index}`} skillGroup={skillgroup} />
+              <SkillGroup
+                key={`${skillgroup.name}-${index}`}
+                skillGroup={skillgroup}
+              />
             ))}
           </div>
         </ResumeSection>
@@ -33,5 +39,5 @@ const Resume: FC = memo(() => {
   );
 });
 
-Resume.displayName = 'Resume';
+Resume.displayName = "Resume";
 export default Resume;

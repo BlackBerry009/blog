@@ -1,8 +1,8 @@
-import {FC, memo} from 'react';
+import { FC, memo } from "react";
 
-import Icon, {IconProps} from './Icon';
+import Icon, { IconProps } from "./Icon";
 
-const GithubIcon: FC<IconProps> = memo(props => (
+const GithubIcon: FC<IconProps> = memo((props) => (
   <Icon {...props}>
     <path
       clipRule="evenodd"
