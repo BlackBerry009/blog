@@ -13,14 +13,14 @@ const ContactForm: FC = memo(() => {
       email: "",
       message: "",
     }),
-    []
+    [],
   );
 
   const [data, setData] = useState<FormData>(defaultData);
 
   const onChange = useCallback(
     <T extends HTMLInputElement | HTMLTextAreaElement>(
-      event: React.ChangeEvent<T>
+      event: React.ChangeEvent<T>,
     ): void => {
       const { name, value } = event.target;
 
@@ -28,7 +28,7 @@ const ContactForm: FC = memo(() => {
 
       setData({ ...data, ...fieldData });
     },
-    [data]
+    [data],
   );
 
   const handleSendMessage = useCallback(
@@ -39,7 +39,7 @@ const ContactForm: FC = memo(() => {
        * */
       console.log("Data to send: ", data);
     },
-    [data]
+    [data],
   );
 
   const inputClasses =

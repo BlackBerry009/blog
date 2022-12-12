@@ -7,7 +7,7 @@ import {
   OfficeBuildingIcon,
   SparklesIcon,
   DocumentTextIcon,
-  PhoneIcon
+  PhoneIcon,
 } from "@heroicons/react/outline";
 import GithubIcon from "../components/Icon/GithubIcon";
 import InstagramIcon from "../components/Icon/InstagramIcon";
@@ -62,7 +62,7 @@ export type SectionId = typeof SectionId[keyof typeof SectionId];
  */
 export const heroData: Hero = {
   imageSrc: heroImage,
-  name: `Hello World.`,
+  name: "Hello World.",
   description: (
     <>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
@@ -76,7 +76,8 @@ export const heroData: Hero = {
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
         now, I work in
         <strong className="text-stone-100"> Shanghai </strong>
-        <br />I am mainly responsible for the front-end infrastructure and some
+        <br />
+        I am mainly responsible for the front-end infrastructure and some
         business.
       </p>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
@@ -93,13 +94,13 @@ export const heroData: Hero = {
       text: "Notes",
       primary: true,
       Icon: DocumentTextIcon,
-      debounce: true
+      debounce: true,
     },
     {
       href: `#${SectionId.Contact}`,
       text: "Concat",
       primary: false,
-      Icon: PhoneIcon
+      Icon: PhoneIcon,
     },
   ],
 };

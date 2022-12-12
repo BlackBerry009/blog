@@ -29,7 +29,7 @@ const Section = memo(
         </div>
       </section>
     );
-  }
+  },
 );
 
 Section.displayName = "Section";

@@ -37,7 +37,7 @@ const Page = memo(
         {children}
       </>
     );
-  }
+  },
 );
 
 Page.displayName = "Page";
