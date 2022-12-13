@@ -91,7 +91,7 @@ export const heroData: Hero = {
   actions: [
     {
       href: "/docs/fe/intro",
-      text: "Notes",
+      text: "Blog",
       primary: true,
       Icon: DocumentTextIcon,
       debounce: true,
