@@ -16,7 +16,7 @@ const Hero: FC = memo(() => {
           alt={`${name}-image`}
           className="absolute z-0"
           src={imageSrc}
-        ></img>
+        />
         <div className="z-10  max-w-screen-lg px-4 lg:px-0">
           <div className="flex flex-col items-center gap-y-6 rounded-xl bg-gray-800/40 p-6 text-center shadow-lg backdrop-blur-sm">
             <p className="text-4xl font-bold text-white sm:text-5xl lg:text-7xl">
@@ -34,7 +34,7 @@ const Hero: FC = memo(() => {
                     primary
                       ? "border-orange-500 ring-orange-500"
                       : "border-white ring-white",
-                      debounce ? 'animate-zoomIn' : ''
+                    debounce ? "animate-zoomIn" : "",
                   )}
                   href={href}
                   key={text}

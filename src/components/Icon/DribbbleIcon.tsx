@@ -1,8 +1,8 @@
-import {FC, memo} from 'react';
+import { FC, memo } from "react";
 
-import Icon, {IconProps} from './Icon';
+import Icon, { IconProps } from "./Icon";
 
-const DribbbleIcon: FC<IconProps> = memo(props => (
+const DribbbleIcon: FC<IconProps> = memo((props) => (
   <Icon {...props}>
     <path
       d="M61.1649 49.3018C54.0405 36.6965 46.4259 26.0712 44.8926 23.9633C32.6427 29.8077 23.4717 41.0853 20.5277 54.656C20.6516 54.656 20.7946 54.656 20.962 54.656C25.0594 54.656 42.0412 54.3265 61.1649 49.3018Z"
