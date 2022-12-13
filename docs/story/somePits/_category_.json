@@ -1,7 +1,7 @@
 {
-  "label": "踩坑记录",
+  "label": "知识点整理",
   "position": 3,
   "link": {
-    "description": "日常开发过程中的踩坑记录"
+    "description": "日常开发过程中的踩坑记录或者一些需掌握的知识"
   }
 }

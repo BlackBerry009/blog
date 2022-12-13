@@ -12,3 +12,4 @@ sidebar_label: TODO
 - [ ] magic i18n in React
 - [ ] @antfu/ni
 - [ ] Chrome Plugin
+- [ ] Web Components
