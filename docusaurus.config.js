@@ -99,9 +99,9 @@ const config = {
             type: "doc",
             docId: "story/story",
             position: "left",
-            label: "杂记",
+            label: "其他",
           },
-          { to: "/blog", label: "文章", position: "left" },
+          { to: "/blog", label: "随笔", position: "left" },
           {
             href: "https://github.com/BlackBerry009/BlackBerry.site",
             position: "right",
