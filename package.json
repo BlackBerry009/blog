@@ -1,0 +1,28 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "next"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BlackBerry009/blog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BlackBerry009/blog/issues"
+  },
+  "homepage": "https://github.com/BlackBerry009/blog#readme",
+  "dependencies": {
+    "next": "^13.2.1",
+    "nextra": "^2.2.16",
+    "nextra-theme-blog": "^2.2.16",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
