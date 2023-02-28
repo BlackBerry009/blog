@@ -2,6 +2,9 @@ const { promises: fs } = require('fs')
 const path = require('path')
 const RSS = require('rss')
 const matter = require('gray-matter')
+const MarkdownIt = require('markdown-it')
+
+const md = new MarkdownIt()
 
 async function generate() {
   const feed = new RSS({
@@ -24,7 +27,7 @@ async function generate() {
         title: frontmatter.data.title,
         url: '/posts/' + name.replace(/\.mdx?/, ''),
         date: frontmatter.data.date,
-        description: frontmatter.content,
+        description: md.render(frontmatter.content),
         categories: frontmatter.data.tag.split(', '),
         author: frontmatter.data.author,
       })
