@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title><![CDATA[BlackBerry]]></title>
+        <description><![CDATA[BlackBerry]]></description>
+        <link>https://blog.blackberry009.top</link>
+        <generator>RSS for Node</generator>
+        <lastBuildDate>Tue, 28 Feb 2023 07:39:44 GMT</lastBuildDate>
+        <atom:link href="https://blog.blackberry009.top/feed.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[自定义 loader]]></title>
+            <description><![CDATA[
+最近看到了 [pirates](https://github.com/danez/pirates#readme) 库，对 Node 的 require 函数进行了劫持，进行了统一的封装。
+
+esbuild, rollup, esno 等都依赖这个库。
+
+下面来看下自定义加载器，可以干什么，比如：可以让 Node 直接运行 ts 文件。
+
+Node 里面内置了 三种加载器，分别是 `node`, `json`, `js`。
+
+以 js 加载器为示例看下写法
+
+```js
+Module._extensions['.js'] = function (module, filename) {
+  // If already analyzed the source, then it will be cached.
+  const cached = cjsParseCache.get(module)
+  let content
+  if (cached?.source) {
+    content = cached.source
+    cached.source = undefined
+  } else {
+    content = fs.readFileSync(filename, 'utf8')
+  }
+  // ...
+  module._compile(content, filename)
+}
+```
+
+上面总共就两个步骤
+
+1. 读取文件内容
+2. 编译 js 代码
+
+我们也照葫芦画瓢模仿一下
+
+```js title="hijack.js"
+const fs = require('fs')
+const Module = require('module')
+const { transformSync } = require('esbuild')
+
+Module._extensions['.ts'] = function (module, filename) {
+  const content = fs.readFileSync(filename, 'utf8')
+  const { code } = transformSync(content, {
+    sourcefile: filename,
+    sourcemap: 'both',
+    loader: 'ts',
+    format: 'cjs',
+  })
+  module._compile(code, filename)
+}
+```
+
+写完之后如何运行用 node 运行 ts 之前加载我们这部分的代码呢。
+
+node 有提供这方面的命令
+
+```sh
+node --help | grep preload
+```
+
+```ts title="index.ts"
+// 创建一个 ts 文件测试一下
+const str: string = 'hello world'
+console.log(str)
+```
+
+```sh
+node -r ./hijack.js index.ts
+```
+
+运行成功我们可以看到命令行输出了 hello world。
+
+我们再用 pirates 封装的标准重新写一下。
+
+```js title="pirates.js"
+const addHook = require('pirates').addHook
+const { transformSync } = require('esbuild')
+
+addHook(
+  (code, filename) => {
+    const { code: result } = transformSync(code, {
+      sourcefile: filename,
+      sourcemap: 'both',
+      loader: 'ts',
+      format: 'cjs',
+    })
+    return result
+  },
+  {
+    exts: ['.ts'],
+  }
+)
+```
+
+```sh
+node -r ./pirates.js index.ts
+```
+
+[pirates](https://github.com/danez/pirates#readme) 源码不到 100 行，就是替换了原有的 `module._compile` 函数
+]]></description>
+            <link>/posts/loader</link>
+            <guid isPermaLink="true">/posts/loader</guid>
+            <category><![CDATA[node]]></category>
+            <dc:creator><![CDATA[BlackBerry]]></dc:creator>
+            <pubDate>Mon, 19 Dec 2022 16:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Node18]]></title>
+            <description><![CDATA[
+Node 18 已经成为了 LTS 版本，让我们看看都更新了什么
+
+## 1.内置了 Fetch Api
+
+在 Node 18 版本之前，我们需要安装 `node-fetch` 或者 `axios` 去发起请求，在 Node 18 中，就不在需要安装这些了。
+
+看下在 Node18 中如何发起请求
+
+```js title="index.js"
+fetch('https://jsonplaceholder.typicode.com/todos/1')
+  .then((response) => response.json())
+  .then((json) => console.log(json))
+```
+
+写完之后我们运行一下
+
+```js
+➜ node index.js
+
+(node:30887) ExperimentalWarning: The Fetch API is an experimental feature. This feature could change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+{ userId: 1, id: 1, title: 'delectus aut autem', completed: false }
+```
+
+## 2.内置了 test 模块
+
+之前我们要进行单元测试的时候，需要安装 `Jest`、`Mocha`、`Chai` 等等。
+
+现在我们只需要导入自带的 `test` 模块。
+
+接下来看看该如何使用他。
+
+```js title="index.mjs"
+export const sum = (a, b) => a + b
+```
+
+```js title="test.mjs"
+import test from 'node:test'
+import assert from 'node:assert/strict'
+import { sum } from './index.mjs'
+
+test('sum', async (t) => {
+  await t.test('true', () => {
+    assert.equal(sum(2, 8), 10)
+  })
+  await t.test('false', () => {
+    assert.notEqual(sum(2, 5), 8)
+  })
+})
+```
+
+运行下看下结果
+
+```js
+➜ node test.mjs
+
+TAP version 13
+# Subtest: sum
+    # Subtest: true
+    ok 1 - true
+      ---
+      duration_ms: 0.621862
+      ...
+    # Subtest: false
+    ok 2 - false
+      ---
+      duration_ms: 0.135985
+      ...
+    1..2
+ok 1 - sum
+  ---
+  duration_ms: 3.034993
+  ...
+1..1
+# tests 1
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 7.669003
+```
+
+## 3.支持 Web Streams API
+
+具体参考[MDN](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API)
+
+## 4.hmr
+
+现在我们不再需要安装 `nodemon` 插件来监听文件变化 hmr 了，可以使用 `--watch` 来监听文件变动
+
+```js
+node --watch index.js
+```
+
+## 5.支持 import JSON
+
+```js
+import json from './package.json' assert { type: 'json' }
+console.log(json)
+```
+
+:::caution
+该实验性功能可能会随时移除
+:::
+
+## 参考
+
+> https://nodesource.com/blog/11-features-nodeJS-18-to-try
+]]></description>
+            <link>/posts/node18</link>
+            <guid isPermaLink="true">/posts/node18</guid>
+            <category><![CDATA[node]]></category>
+            <dc:creator><![CDATA[BlackBerry]]></dc:creator>
+            <pubDate>Wed, 07 Dec 2022 16:00:00 GMT</pubDate>
+        </item>
+    </channel>
+</rss>

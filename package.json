@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "next",
-    "build": "next build"
+    "build": "node ./scripts/index.js && next build"
   },
   "repository": {
     "type": "git",
@@ -19,10 +19,12 @@
   },
   "homepage": "https://github.com/BlackBerry009/blog#readme",
   "dependencies": {
+    "gray-matter": "^4.0.3",
     "next": "^13.2.1",
     "nextra": "^2.2.16",
     "nextra-theme-blog": "^2.2.16",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "rss": "^1.2.2"
   }
 }

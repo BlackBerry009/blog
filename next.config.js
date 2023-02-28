@@ -1,4 +1,4 @@
-import nextra from 'nextra'
+const nextra = require('nextra')
 
 const withNextra = nextra({
   theme: 'nextra-theme-blog',
@@ -8,6 +8,6 @@ const withNextra = nextra({
   readingTime: true,
 })
 
-export default withNextra({
+module.exports = withNextra({
   reactStrictMode: true,
 })
