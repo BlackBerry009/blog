@@ -1,7 +1,7 @@
 ---
 title: git config
 date: 2023/03/01
-description: 切换分支 push 时，再也不需要使用git push --set-upstream origin <branch> 关联了
+description: 切换分支 push 时，再也不需要使用git push --set-upstream origin <branch>
 tag: git,skills
 author: BlackBerry
 ---
@@ -10,7 +10,11 @@ author: BlackBerry
 
 `git push --set-upstream origin <branch>`
 
-因为本地切换了分支，远程不知道这个变化，所以需要使用 `git push origin <local branch>` 命令将本地分支推送到远程。
+因为本地切换了分支，远程不知道这个变化，所以需要使用
+
+`git push origin <local branch>`
+
+命令将本地分支推送到远程。
 
 也可以关联远程分支，通过如上的 `--set-upstream` 命令进行一次关联，以后就可以使用 `git push` 命令推送了。
 
@@ -21,4 +25,4 @@ author: BlackBerry
 1. `git config --global --add push.default current`
 2. `git config --global --add push.autoSetupRemote true`
 
-完成设置后，就不需要再执行 `git push --set-upstream origin <branch>` 命令了。
+完成设置后，就不需要再执行`git push --set-upstream origin <branch>`命令了。

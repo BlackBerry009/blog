@@ -14,7 +14,7 @@ Node 18 已经成为了 LTS 版本，让我们看看都更新了什么
 
 看下在 Node18 中如何发起请求
 
-```js title="index.js"
+```js filename="index.js"
 fetch('https://jsonplaceholder.typicode.com/todos/1')
   .then((response) => response.json())
   .then((json) => console.log(json))
@@ -38,11 +38,11 @@ fetch('https://jsonplaceholder.typicode.com/todos/1')
 
 接下来看看该如何使用他。
 
-```js title="index.mjs"
+```js filename="index.mjs"
 export const sum = (a, b) => a + b
 ```
 
-```js title="test.mjs"
+```js filename="test.mjs"
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import { sum } from './index.mjs'
@@ -108,9 +108,7 @@ import json from './package.json' assert { type: 'json' }
 console.log(json)
 ```
 
-:::caution
-该实验性功能可能会随时移除
-:::
+> 该实验性功能可能会随时移除
 
 ## 参考
 

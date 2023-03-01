@@ -39,7 +39,7 @@ Module._extensions['.js'] = function (module, filename) {
 
 我们也照葫芦画瓢模仿一下
 
-```js title="hijack.js"
+```js filename="hijack.js"
 const fs = require('fs')
 const Module = require('module')
 const { transformSync } = require('esbuild')
@@ -78,7 +78,7 @@ node -r ./hijack.js index.ts
 
 我们再用 pirates 封装的标准重新写一下。
 
-```js title="pirates.js"
+```js filename="pirates.js"
 const addHook = require('pirates').addHook
 const { transformSync } = require('esbuild')
 
