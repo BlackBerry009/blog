@@ -30,4 +30,7 @@ export default {
   readMore: 'Read More →',
   postFooter: null,
   darkMode: true,
+  cusdis: {
+    appId: '1137a882-35a0-464a-9d29-b45730be0357',
+  }
 }
