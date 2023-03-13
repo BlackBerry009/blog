@@ -1,19 +1,9 @@
-import Script from 'next/script'
+import { GoogleAnalytics } from 'nextjs-google-analytics'
 
 export default function App({ Component, pageProps }) {
   return (
     <>
-      <Script
-        src="https://www.googletagmanager.com/gtag/js?id=G-2YY1M3CCFX"
-        onLoad={() => {
-          window.dataLayer = window.dataLayer || []
-          function gtag() {
-            dataLayer.push(arguments)
-          }
-          gtag('js', new Date())
-          gtag('config', 'G-2YY1M3CCFX')
-        }}
-      />
+      <GoogleAnalytics trackPageViews />
       <Component {...pageProps} />
     </>
   )
