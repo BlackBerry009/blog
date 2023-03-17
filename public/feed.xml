@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title><![CDATA[BlackBerry]]></title>
+        <description><![CDATA[BlackBerry]]></description>
+        <link>https://blog.blackberry009.top</link>
+        <generator>RSS for Node</generator>
+        <lastBuildDate>Fri, 17 Mar 2023 12:27:41 GMT</lastBuildDate>
+        <atom:link href="https://blog.blackberry009.top/feed.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[structuredClone]]></title>
+            <description><![CDATA[<h1>structuredClone</h1>
+<p><code>ECMAScript 2021</code> 出来的新特性 <code>structuredClone</code> ，就再也不需要使用<code>JSON.parse(JSON.stringify(obj)</code></p>
+<h2>TL;DR;</h2>
+<p><code>structuredClone</code> 不能克隆以下情况：</p>
+<ul>
+<li>Function</li>
+<li>DOM</li>
+<li>Property description: getter /  setter</li>
+<li>Object prototypes</li>
+</ul>
+<p>除此之外的克隆需要，都可以用<code>structuredClone</code> ，可以覆盖大部分场景了。</p>
+<h2>介绍</h2>
+<p><code>structuredClone</code> 是内置在 <code>JavaScript</code>  中的。功能 ≥  <code>JSON.parse(JSON.stringify())</code></p>
+<p>我们先看看在实战中的作用</p>
+<pre><code class="language-jsx">const obj = {
+	name: 'demo',
+	date: new Date(),
+	arr: [{a:1},{b:2}],
+	set: new Set([1,2,1]),
+	map: new Map([[1,2]]),
+	regex: /test/,
+	error: new Error('test')
+}
+
+obj.circular = obj;
+
+const clone = structuredClone(obj) //  ✅
+</code></pre>
+<p>有了上述明显的代码展示，一下子就能看出来和平常我们用的 <code>JSON.parse</code>的区别了。</p>
+<p><code>struturedClone</code> 不仅是深度克隆，还可以克隆时间，正则，甚至循环引用！!</p>
+<h2>总结</h2>
+<p><a href="https://caniuse.com/?search=structuredClone">structuredClone</a> 算是一个较新的 API ， 在内部项目或者side project，我们都可以使用最新的API来进行开发，感受一下新技术的便捷。该API可以覆盖大部分的场景了，满足日常的克隆需要～ 以后就用它！</p>
+<blockquote>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/structuredClone">structuredClone() - Web APIs | MDN</a></p>
+</blockquote>
+]]></description>
+            <link>/posts/structuredClone</link>
+            <guid isPermaLink="true">/posts/structuredClone</guid>
+            <category><![CDATA[js,skills]]></category>
+            <dc:creator><![CDATA[BlackBerry]]></dc:creator>
+            <pubDate>Wed, 15 Mar 2023 16:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[ssh config]]></title>
+            <description><![CDATA[<h1>ssh config</h1>
+<p>When we have other platforms like GitHub and GitLab on our personal computer, the Git info we submit is globally configured through <code>git config</code>, which is not what we want. However, setting up Git config separately for each project can be very cumbersome. In this case, we can use <code>ssh config</code> to differentiate multiple platforms.</p>
+<p>Run <code>ssh-keygen -t rsa -f ~/.ssh/&lt;filename&gt;</code>. Here we set the filename to <code>id_rsa_github</code>.</p>
+<p>Add the generated public key to GitHub SSH key.</p>
+<p>Then execute <code>mkdir ~/.ssh/config</code>.</p>
+<p>Copy the following content into it:</p>
+<pre><code class="language-bash"># GitHub
+Host github.com
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_rsa_github
+
+# GitLab
+Host gitlab.com
+  HostName gitlab.com
+  User git
+  IdentityFile ~/.ssh/id_rsa_gitlab
+</code></pre>
+<p>Make sure that the <code>IdentityFile</code> path is the path of the key you generated.</p>
+<p>Then execute <code>ssh -T git@github.com</code> to see if the connection is successful.</p>
+<p>This way, whether you submit to GitLab or GitHub repositories, the corresponding config information can be automatically recognized.</p>
+]]></description>
+            <link>/posts/ssh-config</link>
+            <guid isPermaLink="true">/posts/ssh-config</guid>
+            <category><![CDATA[skills,en]]></category>
+            <dc:creator><![CDATA[BlackBerry]]></dc:creator>
+            <pubDate>Wed, 08 Mar 2023 16:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[git config]]></title>
+            <description><![CDATA[<p>当我们每次切换新分支时，通常需要执行以下命令：</p>
+<p><code>git push --set-upstream origin &lt;branch&gt;</code></p>
+<p>因为本地切换了分支，远程不知道这个变化，所以需要使用</p>
+<p><code>git push origin &lt;local branch&gt;</code></p>
+<p>命令将本地分支推送到远程。</p>
+<p>也可以关联远程分支，通过如上的 <code>--set-upstream</code> 命令进行一次关联，以后就可以使用 <code>git push</code> 命令推送了。</p>
+<p>按照一般规范，我们本地切换了分支，就会推送同名分支到远程，因此不需要每次都进行关联。</p>
+<p>我们可以进行以下设置（二选一）：</p>
+<ol>
+<li><code>git config --global --add push.default current</code></li>
+<li><code>git config --global --add push.autoSetupRemote true</code></li>
+</ol>
+<p>完成设置后，就不需要再执行<code>git push --set-upstream origin &lt;branch&gt;</code>命令了。</p>
+]]></description>
+            <link>/posts/git-config</link>
+            <guid isPermaLink="true">/posts/git-config</guid>
+            <category><![CDATA[git,skills]]></category>
+            <dc:creator><![CDATA[BlackBerry]]></dc:creator>
+            <pubDate>Tue, 28 Feb 2023 16:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[自定义 loader]]></title>
+            <description><![CDATA[<p>最近看到了 <a href="https://github.com/danez/pirates#readme">pirates</a> 库，对 Node 的 require 函数进行了劫持，进行了统一的封装。</p>
+<p>esbuild, rollup, esno 等都依赖这个库。</p>
+<p>下面来看下自定义加载器，可以干什么，比如：可以让 Node 直接运行 ts 文件。</p>
+<p>Node 里面内置了 三种加载器，分别是 <code>node</code>, <code>json</code>, <code>js</code>。</p>
+<p>以 js 加载器为示例看下写法</p>
+<pre><code class="language-js">Module._extensions['.js'] = function (module, filename) {
+  // If already analyzed the source, then it will be cached.
+  const cached = cjsParseCache.get(module)
+  let content
+  if (cached?.source) {
+    content = cached.source
+    cached.source = undefined
+  } else {
+    content = fs.readFileSync(filename, 'utf8')
+  }
+  // ...
+  module._compile(content, filename)
+}
+</code></pre>
+<p>上面总共就两个步骤</p>
+<ol>
+<li>读取文件内容</li>
+<li>编译 js 代码</li>
+</ol>
+<p>我们也照葫芦画瓢模仿一下</p>
+<pre><code class="language-js">const fs = require('fs')
+const Module = require('module')
+const { transformSync } = require('esbuild')
+
+Module._extensions['.ts'] = function (module, filename) {
+  const content = fs.readFileSync(filename, 'utf8')
+  const { code } = transformSync(content, {
+    sourcefile: filename,
+    sourcemap: 'both',
+    loader: 'ts',
+    format: 'cjs',
+  })
+  module._compile(code, filename)
+}
+</code></pre>
+<p>写完之后如何运行用 node 运行 ts 之前加载我们这部分的代码呢。</p>
+<p>node 有提供这方面的命令</p>
+<pre><code class="language-sh">node --help | grep preload
+</code></pre>
+<pre><code class="language-ts">// 创建一个 ts 文件测试一下
+const str: string = 'hello world'
+console.log(str)
+</code></pre>
+<pre><code class="language-sh">node -r ./hijack.js index.ts
+</code></pre>
+<p>运行成功我们可以看到命令行输出了 hello world。</p>
+<p>我们再用 pirates 封装的标准重新写一下。</p>
+<pre><code class="language-js">const addHook = require('pirates').addHook
+const { transformSync } = require('esbuild')
+
+addHook(
+  (code, filename) =&gt; {
+    const { code: result } = transformSync(code, {
+      sourcefile: filename,
+      sourcemap: 'both',
+      loader: 'ts',
+      format: 'cjs',
+    })
+    return result
+  },
+  {
+    exts: ['.ts'],
+  }
+)
+</code></pre>
+<pre><code class="language-sh">node -r ./pirates.js index.ts
+</code></pre>
+<p><a href="https://github.com/danez/pirates#readme">pirates</a> 源码不到 100 行，就是替换了原有的 <code>module._compile</code> 函数</p>
+]]></description>
+            <link>/posts/loader</link>
+            <guid isPermaLink="true">/posts/loader</guid>
+            <category><![CDATA[node]]></category>
+            <dc:creator><![CDATA[BlackBerry]]></dc:creator>
+            <pubDate>Mon, 19 Dec 2022 16:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Node18]]></title>
+            <description><![CDATA[<p>Node 18 已经成为了 LTS 版本，让我们看看都更新了什么</p>
+<h2>1.内置了 Fetch Api</h2>
+<p>在 Node 18 版本之前，我们需要安装 <code>node-fetch</code> 或者 <code>axios</code> 去发起请求，在 Node 18 中，就不在需要安装这些了。</p>
+<p>看下在 Node18 中如何发起请求</p>
+<pre><code class="language-js">fetch('https://jsonplaceholder.typicode.com/todos/1')
+  .then((response) =&gt; response.json())
+  .then((json) =&gt; console.log(json))
+</code></pre>
+<p>写完之后我们运行一下</p>
+<pre><code class="language-js">➜ node index.js
+
+(node:30887) ExperimentalWarning: The Fetch API is an experimental feature. This feature could change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+{ userId: 1, id: 1, title: 'delectus aut autem', completed: false }
+</code></pre>
+<h2>2.内置了 test 模块</h2>
+<p>之前我们要进行单元测试的时候，需要安装 <code>Jest</code>、<code>Mocha</code>、<code>Chai</code> 等等。</p>
+<p>现在我们只需要导入自带的 <code>test</code> 模块。</p>
+<p>接下来看看该如何使用他。</p>
+<pre><code class="language-js">export const sum = (a, b) =&gt; a + b
+</code></pre>
+<pre><code class="language-js">import test from 'node:test'
+import assert from 'node:assert/strict'
+import { sum } from './index.mjs'
+
+test('sum', async (t) =&gt; {
+  await t.test('true', () =&gt; {
+    assert.equal(sum(2, 8), 10)
+  })
+  await t.test('false', () =&gt; {
+    assert.notEqual(sum(2, 5), 8)
+  })
+})
+</code></pre>
+<p>运行下看下结果</p>
+<pre><code class="language-js">➜ node test.mjs
+
+TAP version 13
+# Subtest: sum
+    # Subtest: true
+    ok 1 - true
+      ---
+      duration_ms: 0.621862
+      ...
+    # Subtest: false
+    ok 2 - false
+      ---
+      duration_ms: 0.135985
+      ...
+    1..2
+ok 1 - sum
+  ---
+  duration_ms: 3.034993
+  ...
+1..1
+# tests 1
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 7.669003
+</code></pre>
+<h2>3.支持 Web Streams API</h2>
+<p>具体参考<a href="https://developer.mozilla.org/en-US/docs/Web/API/Streams_API">MDN</a></p>
+<h2>4.hmr</h2>
+<p>现在我们不再需要安装 <code>nodemon</code> 插件来监听文件变化 hmr 了，可以使用 <code>--watch</code> 来监听文件变动</p>
+<pre><code class="language-js">node --watch index.js
+</code></pre>
+<h2>5.支持 import JSON</h2>
+<pre><code class="language-js">import json from './package.json' assert { type: 'json' }
+console.log(json)
+</code></pre>
+<blockquote>
+<p>该实验性功能可能会随时移除</p>
+</blockquote>
+<h2>参考</h2>
+<blockquote>
+<p>https://nodesource.com/blog/11-features-nodeJS-18-to-try</p>
+</blockquote>
+]]></description>
+            <link>/posts/node18</link>
+            <guid isPermaLink="true">/posts/node18</guid>
+            <category><![CDATA[node]]></category>
+            <dc:creator><![CDATA[BlackBerry]]></dc:creator>
+            <pubDate>Wed, 07 Dec 2022 16:00:00 GMT</pubDate>
+        </item>
+    </channel>
+</rss>
