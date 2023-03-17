@@ -1,14 +1,19 @@
 import { useRouter } from 'next/router'
 import { ReactCusdis } from 'react-cusdis'
 import { useBlogContext } from 'nextra-theme-blog'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useTheme } from 'nextra-theme-blog'
 
 const Comments = () => {
   const { opts } = useBlogContext()
   const router = useRouter()
   const { resolvedTheme } = useTheme()
-  
+  useEffect(() => {
+    ;(window as any).CUSDIS?.setTheme(
+      resolvedTheme === 'dark' ? 'dark' : 'light'
+    )
+  }, [resolvedTheme])
+
   return (
     <ReactCusdis
       lang="en"
