@@ -1,5 +1,9 @@
 import { AiFillGithub } from 'react-icons/ai'
 import { BiRss } from 'react-icons/bi'
+import dynamic from 'next/dynamic'
+import React from 'react';
+
+const Cusdis = dynamic(() => import("nextra-theme-blog/cusdis"));
 
 const YEAR = new Date().getFullYear()
 
@@ -47,4 +51,5 @@ export default {
   cusdis: {
     appId: '1137a882-35a0-464a-9d29-b45730be0357',
   },
+  comments: <Cusdis />
 }
