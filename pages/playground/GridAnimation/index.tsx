@@ -1,26 +1,23 @@
-import styles from './index.module.css'
-import { clsx } from 'clsx'
-import { useState } from 'react'
+import React, { useState } from 'react'
 
 export const GridDemo = () => {
   const [open, setOpen] = useState(true)
   return (
-    <div className="flex">
+    <div>
       <button
         onClick={() => {
           setOpen(!open)
         }}
-        className={styles.btn}
+        className="text-black border-none p-1 my-2 rounded-xl bg-gradient-to-tr from-pink-200 to-green-200"
       >
         Open me
       </button>
       <div
-        className={clsx({
-          [styles.grid]: true,
-          [styles.open]: open
-        })}
+        className={`grid transition-[grid-template-rows] duration-500 ease-in-out ${
+          open ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
+        }`}
       >
-        <div className={styles['grid-child']}>
+        <div className="overflow-hidden mt-2 border-t-2 border-gray-50">
           <div>the first row</div>
           <div>the second row</div>
           <div>the third row</div>
