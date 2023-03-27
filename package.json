@@ -31,5 +31,11 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
     "rss": "^1.2.2"
+  },
+  "devDependencies": {
+    "@types/node": "18.15.10",
+    "clsx": "^1.2.1",
+    "typescript": "5.0.2",
+    "typescript-plugin-css-modules": "^5.0.0"
   }
 }
