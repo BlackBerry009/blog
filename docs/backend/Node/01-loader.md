@@ -1,0 +1,99 @@
+---
+sidebar_label: 自定义加载器
+---
+
+最近看到了 [pirates](https://github.com/danez/pirates#readme) 库，对 Node 的 require 函数进行了劫持，进行了统一的封装。
+
+esbuild, rollup, esno 等都依赖这个库。
+
+下面来看下自定义加载器，可以干什么，比如：可以让 Node 直接运行 ts 文件。
+
+Node 里面内置了 三种加载器，分别是 `node`, `json`, `js`。
+
+以 js 加载器为示例看下写法
+
+```js title="lib/internal/modules/cjs/loader.js"
+Module._extensions['.js'] = function(module, filename) {
+  // If already analyzed the source, then it will be cached.
+  const cached = cjsParseCache.get(module);
+  let content;
+  if (cached?.source) {
+    content = cached.source;
+    cached.source = undefined;
+  } else {
+    content = fs.readFileSync(filename, 'utf8');
+  }
+  // ...
+  module._compile(content, filename);
+};
+```
+
+上面总共就两个步骤
+1. 读取文件内容
+2. 编译 js 代码
+
+我们也照葫芦画瓢模仿一下
+```js title="hijack.js"
+const fs = require("fs");
+const Module = require("module");
+const { transformSync } = require("esbuild");
+
+Module._extensions[".ts"] = function (module, filename) {
+  const content = fs.readFileSync(filename, "utf8");
+  const { code } = transformSync(content, {
+    sourcefile: filename,
+    sourcemap: "both",
+    loader: "ts",
+    format: "cjs",
+  });
+  module._compile(code, filename);
+};
+```
+
+写完之后如何运行用 node 运行 ts 之前加载我们这部分的代码呢。
+
+node 有提供这方面的命令
+
+```sh
+node --help | grep preload
+```
+
+```ts title="index.ts"
+// 创建一个 ts 文件测试一下
+const str: string = 'hello world'
+console.log(str)
+```
+
+```sh
+node -r ./hijack.js index.ts
+```
+
+运行成功我们可以看到命令行输出了 hello world。
+
+我们再用 pirates 封装的标准重新写一下。
+
+```js title="pirates.js"
+const addHook = require("pirates").addHook;
+const { transformSync } = require("esbuild");
+
+addHook(
+  (code, filename) => {
+    const { code: result } = transformSync(code, {
+      sourcefile: filename,
+      sourcemap: "both",
+      loader: "ts",
+      format: "cjs",
+    });
+    return result;
+  },
+  {
+    exts: [".ts"],
+  }
+);
+```
+
+```sh
+node -r ./pirates.js index.ts
+```
+
+[pirates](https://github.com/danez/pirates#readme) 源码不到 100 行，就是替换了原有的 `module._compile` 函数
