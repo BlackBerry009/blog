@@ -11,6 +11,7 @@ async function generate() {
     title: 'BlackBerry',
     site_url: 'https://blog.blackberry009.top',
     feed_url: 'https://blog.blackberry009.top/feed.xml',
+    image_url: 'https://avatars.githubusercontent.com/u/42471741?v=4'
   })
 
   const posts = await fs.readdir(path.join(__dirname, '..', 'pages', 'posts'))
