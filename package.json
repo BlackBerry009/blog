@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/BlackBerry009/blog#readme",
   "dependencies": {
+    "feed": "^4.2.2",
     "next": "^13.4.12",
     "nextra": "^2.10.0",
     "nextra-theme-blog": "^2.10.0",

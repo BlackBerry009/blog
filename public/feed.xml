@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+    <channel>
+        <title>BlackBerry</title>
+        <link>https://blog.blackberry009.top</link>
+        <description>feedId:66321001434793986+userId:63034699812466688</description>
+        <lastBuildDate>Wed, 09 Oct 2024 02:46:55 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <item>
+            <title><![CDATA[git config]]></title>
+            <description><![CDATA[<p>当我们每次切换新分支时，通常需要执行以下命令：</p>
+<p><code>git push --set-upstream origin &lt;branch&gt;</code></p>
+<p>因为本地切换了分支，远程不知道这个变化，所以需要使用</p>
+<p><code>git push origin &lt;local branch&gt;</code></p>
+<p>命令将本地分支推送到远程。</p>
+<p>也可以关联远程分支，通过如上的 <code>--set-upstream</code> 命令进行一次关联，以后就可以使用 <code>git push</code> 命令推送了。</p>
+<p>按照一般规范，我们本地切换了分支，就会推送同名分支到远程，因此不需要每次都进行关联。</p>
+<p>我们可以进行以下设置（二选一）：</p>
+<ol>
+<li><code>git config --global --add push.default current</code></li>
+<li><code>git config --global --add push.autoSetupRemote true</code></li>
+</ol>
+<p>完成设置后，就不需要再执行<code>git push --set-upstream origin &lt;branch&gt;</code>命令了。</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[CRA 已成为历史]]></title>
+            <description><![CDATA[<h2>TL;DR</h2>
+<h3>Framework</h3>
+<ul>
+<li><a href="https://nextjs.org/">Nextjs</a></li>
+<li><a href="https://remix.run/">Remix</a></li>
+<li><a href="https://www.gatsbyjs.com/">Gatsby</a></li>
+<li><a href="https://expo.dev/">Expo(mobile)</a></li>
+</ul>
+<h3>Without Framework</h3>
+<ul>
+<li><a href="https://vitejs.dev/">Vite</a></li>
+<li><a href="https://parceljs.org/">Parcel</a></li>
+</ul>
+<p>多年来，CRA 一直是 React 官方推荐的脚手架工具。然而，最近@t3dotgg 在 GitHub 的 issue 上提议将 CRA 从官方文档中移除，引起了很多人的讨论。</p>
+<p>@Dan 也解释说，最初的 CRA 是因为当时 React 没有很好的工具来连接使用 JSX 必须安装的一大堆工具，而 CRA 出现就是为了解决这个问题。如今已经是 2023 年，有很多新的工具和框架出现了，如 Vite、Next.js 和 Remix，它们可以带来更好的开发体验。</p>
+<p><a href="https://react.dev/">React官网</a> 的确取消了对 CRA 的支持，推荐使用 Next.js、Remix 和 Vite 等工具和框架。</p>
+<p>CRA 的目标：</p>
+<ul>
+<li>提供一种无需配置即可开始新的 React 项目的简单方法</li>
+<li>集成与编译相关的依赖项，使其易于升级</li>
+<li>让 React 团队尽可能广泛地部署工具更新（例如 Fast Refresh 支持、Hooks lint 规则）</li>
+</ul>
+<p>CRA 的缺点：</p>
+<ul>
+<li>官方没有经常维护，有太多的 issue</li>
+<li>隐藏了 babel 和 webpack 配置，如果要自定义 webpack，需要额外安装类似于 <a href="https://github.com/dilanx/craco">carco</a> 或者 <a href="https://github.com/timarney/react-app-rewired">react-app-rewired</a> 等工具，心智成本太高</li>
+</ul>
+<p>现阶段框架的优势：</p>
+<ul>
+<li>充分利用 Web API，无论应用程序大小是小还是大，都可以提供快速的应用程序和网站</li>
+<li>充分利用 React 本身及其框架级特性</li>
+<li>提供路由和数据获取，让开发更为便捷</li>
+</ul>
+<blockquote>
+<p><a href="https://github.com/reactjs/reactjs.org/pull/5487#issuecomment-1409720741">https://github.com/reactjs/reactjs.org/pull/5487#issuecomment-1409720741</a></p>
+</blockquote>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[grid-animate]]></title>
+            <description><![CDATA[<h1>grid-animate</h1>
+<p>import { GridDemo } from '/lib/GridAnimation'</p>
+<p>有一次在项目中需要做到展开折叠效果加个动画，内容是自适应的，所以不能通过设置 <code>height</code> 实现，可以通过 <code>max-height</code> 曲线救国，但是有点瑕疵的。</p>
+<p>后来看到了浏览器支持了 <code>grid</code> 属性的动画效果，这看起很棒！</p>
+<p>export const CodePen = () =&gt; {
+return (
+&lt;iframe
+height=&quot;300&quot;
+style={{ width: '100%' }}
+scrolling=&quot;no&quot;
+title=&quot;grid-template-rows / grid-template-columns animation (Firefox only)&quot;
+src=&quot;https://codepen.io/michellebarker/embed/oJmZKK?default-tab=html%2Cresult&quot;
+frameBorder=&quot;no&quot;
+loading=&quot;lazy&quot;
+&gt;&lt;/iframe&gt;
+)
+}</p>
+<p>&lt;CodePen /&gt;</p>
+<p>基于此，我们可以通过调整 <code>grid-template-rows</code> 来实现展开折叠的动画效果。</p>
+<pre><code class="language-html">&lt;div class=&quot;grid&quot;&gt;
+  &lt;div class=&quot;grid-child&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-css">.grid {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.5s ease-in-out;
+}
+.grid.open {
+  grid-template-rows: 1fr;
+}
+.grid-child {
+  overflow: hidden;
+}
+</code></pre>
+<p>&lt;GridDemo /&gt;</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[自定义 loader]]></title>
+            <description><![CDATA[<p>最近看到了 <a href="https://github.com/danez/pirates#readme">pirates</a> 库，对 Node 的 require 函数进行了劫持，进行了统一的封装。</p>
+<p>esbuild, rollup, esno 等都依赖这个库。</p>
+<p>下面来看下自定义加载器，可以干什么，比如：可以让 Node 直接运行 ts 文件。</p>
+<p>Node 里面内置了 三种加载器，分别是 <code>node</code>, <code>json</code>, <code>js</code>。</p>
+<p>以 js 加载器为示例看下写法</p>
+<pre><code class="language-js">Module._extensions['.js'] = function (module, filename) {
+  // If already analyzed the source, then it will be cached.
+  const cached = cjsParseCache.get(module)
+  let content
+  if (cached?.source) {
+    content = cached.source
+    cached.source = undefined
+  } else {
+    content = fs.readFileSync(filename, 'utf8')
+  }
+  // ...
+  module._compile(content, filename)
+}
+</code></pre>
+<p>上面总共就两个步骤</p>
+<ol>
+<li>读取文件内容</li>
+<li>编译 js 代码</li>
+</ol>
+<p>我们也照葫芦画瓢模仿一下</p>
+<pre><code class="language-js">const fs = require('fs')
+const Module = require('module')
+const { transformSync } = require('esbuild')
+
+Module._extensions['.ts'] = function (module, filename) {
+  const content = fs.readFileSync(filename, 'utf8')
+  const { code } = transformSync(content, {
+    sourcefile: filename,
+    sourcemap: 'both',
+    loader: 'ts',
+    format: 'cjs',
+  })
+  module._compile(code, filename)
+}
+</code></pre>
+<p>写完之后如何运行用 node 运行 ts 之前加载我们这部分的代码呢。</p>
+<p>node 有提供这方面的命令</p>
+<pre><code class="language-sh">node --help | grep preload
+</code></pre>
+<pre><code class="language-ts">// 创建一个 ts 文件测试一下
+const str: string = 'hello world'
+console.log(str)
+</code></pre>
+<pre><code class="language-sh">node -r ./hijack.js index.ts
+</code></pre>
+<p>运行成功我们可以看到命令行输出了 hello world。</p>
+<p>我们再用 pirates 封装的标准重新写一下。</p>
+<pre><code class="language-js">const addHook = require('pirates').addHook
+const { transformSync } = require('esbuild')
+
+addHook(
+  (code, filename) =&gt; {
+    const { code: result } = transformSync(code, {
+      sourcefile: filename,
+      sourcemap: 'both',
+      loader: 'ts',
+      format: 'cjs',
+    })
+    return result
+  },
+  {
+    exts: ['.ts'],
+  }
+)
+</code></pre>
+<pre><code class="language-sh">node -r ./pirates.js index.ts
+</code></pre>
+<p><a href="https://github.com/danez/pirates#readme">pirates</a> 源码不到 100 行，就是替换了原有的 <code>module._compile</code> 函数</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[M1 Docker 安装 mysql 踩坑]]></title>
+            <description><![CDATA[<h1>前言</h1>
+<p>之前使用 mysql 都是本机安装的 5.7 使用。</p>
+<p>后面为了方便，转用了 docker，所以一些东西也都迁移过来。</p>
+<p>直接按照网上的卸载方式，把mysql卸载掉</p>
+<pre><code class="language-bash">sudo rm /usr/local/mysql
+sudo rm -rf /usr/local/mysql*
+sudo rm -rf /Library/StartupItems/MySQLCOM
+sudo rm -rf /Library/PreferencePanes/My*
+rm -rf ~/Library/PreferencePanes/My*
+sudo rm -rf /Library/Receipts/mysql*
+sudo rm -rf /Library/Receipts/MySQL*
+sudo rm -rf /var/db/receipts/com.mysql.*
+</code></pre>
+<p>运行上述命令之后，再看设置中的 mysql，已经看不到了，正常按照网上来说应该是卸载成功了。</p>
+<p>然后进行 docker 安装。</p>
+<pre><code class="language-bash">docker pull mysql/mysql-server:latest
+
+docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql/mysql-server
+</code></pre>
+<p>运行之后，通过navicat连接，会爆一些奇奇怪怪的错误，网上搜的解决办法一个都用不了！！</p>
+<p>比如</p>
+<blockquote>
+<p>1146 - Table 'performance_schema.session_variables' doesn't exist</p>
+</blockquote>
+<blockquote>
+<p>[HY000][1006] Can't create database 'testdemo' (errno: 48377920)</p>
+</blockquote>
+<blockquote>
+<p>2002 - Can't connect to server on '127.0.0.1' (36)</p>
+</blockquote>
+<p>以上错误，乱七八糟，不过最后发现navicat的侧边的server version竟然是5.7</p>
+<p><img src="/mysql.png" alt="mysql"></p>
+<p>应该就是没有卸载干净，后来搜索半天资料。</p>
+<p>还需要在 bash_profile 中删掉，重启。</p>
+<p>成功！</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Node18]]></title>
+            <description><![CDATA[<p>Node 18 已经成为了 LTS 版本，让我们看看都更新了什么</p>
+<h2>1.内置了 Fetch Api</h2>
+<p>在 Node 18 版本之前，我们需要安装 <code>node-fetch</code> 或者 <code>axios</code> 去发起请求，在 Node 18 中，就不在需要安装这些了。</p>
+<p>看下在 Node18 中如何发起请求</p>
+<pre><code class="language-js">fetch('https://jsonplaceholder.typicode.com/todos/1')
+  .then((response) =&gt; response.json())
+  .then((json) =&gt; console.log(json))
+</code></pre>
+<p>写完之后我们运行一下</p>
+<pre><code class="language-js">➜ node index.js
+
+(node:30887) ExperimentalWarning: The Fetch API is an experimental feature. This feature could change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+{ userId: 1, id: 1, title: 'delectus aut autem', completed: false }
+</code></pre>
+<h2>2.内置了 test 模块</h2>
+<p>之前我们要进行单元测试的时候，需要安装 <code>Jest</code>、<code>Mocha</code>、<code>Chai</code> 等等。</p>
+<p>现在我们只需要导入自带的 <code>test</code> 模块。</p>
+<p>接下来看看该如何使用他。</p>
+<pre><code class="language-js">export const sum = (a, b) =&gt; a + b
+</code></pre>
+<pre><code class="language-js">import test from 'node:test'
+import assert from 'node:assert/strict'
+import { sum } from './index.mjs'
+
+test('sum', async (t) =&gt; {
+  await t.test('true', () =&gt; {
+    assert.equal(sum(2, 8), 10)
+  })
+  await t.test('false', () =&gt; {
+    assert.notEqual(sum(2, 5), 8)
+  })
+})
+</code></pre>
+<p>运行下看下结果</p>
+<pre><code class="language-js">➜ node test.mjs
+
+TAP version 13
+# Subtest: sum
+    # Subtest: true
+    ok 1 - true
+      ---
+      duration_ms: 0.621862
+      ...
+    # Subtest: false
+    ok 2 - false
+      ---
+      duration_ms: 0.135985
+      ...
+    1..2
+ok 1 - sum
+  ---
+  duration_ms: 3.034993
+  ...
+1..1
+# tests 1
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 7.669003
+</code></pre>
+<h2>3.支持 Web Streams API</h2>
+<p>具体参考<a href="https://developer.mozilla.org/en-US/docs/Web/API/Streams_API">MDN</a></p>
+<h2>4.hmr</h2>
+<p>现在我们不再需要安装 <code>nodemon</code> 插件来监听文件变化 hmr 了，可以使用 <code>--watch</code> 来监听文件变动</p>
+<pre><code class="language-js">node --watch index.js
+</code></pre>
+<h2>5.支持 import JSON</h2>
+<pre><code class="language-js">import json from './package.json' assert { type: 'json' }
+console.log(json)
+</code></pre>
+<blockquote>
+<p>该实验性功能可能会随时移除</p>
+</blockquote>
+<h2>参考</h2>
+<blockquote>
+<p>https://nodesource.com/blog/11-features-nodeJS-18-to-try</p>
+</blockquote>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Array reduce 实战]]></title>
+            <description><![CDATA[<h2>什么是 reduce</h2>
+<p>Array 上的原型方法，它接收一个函数作为累加器（accumulator），数组中的每个值（从左到右）开始缩减，最终为一个值。</p>
+<p>使用方法就是这样</p>
+<pre><code class="language-js">arr.reduce(callback(previousValue, currentValue, currentIndex, sourceArray), [
+  initValue,
+])
+</code></pre>
+<ul>
+<li><strong>callback</strong>：<strong>reduce</strong> 得回调函数，接收四个参数:
+<ul>
+<li><strong>previousValue</strong>：累加器，即上一次回调返回的值，或者提供的初始值(initValue)</li>
+<li><strong>currentValue</strong>：数组中当前正在被处理的值</li>
+<li><strong>currentIndex</strong>： 数组中当前元素的索引（可选）</li>
+<li><strong>sourceArray</strong>：reduce 的源数组（可选）</li>
+</ul>
+</li>
+</ul>
+<p>回调函数第一次执行时，<strong>previousValue</strong> 和 <strong>currentValue</strong> 的取值有两种情况：如果调用 <strong>reduce()</strong> 时提供了 <strong>initValue</strong>，<strong>previousValue</strong> 取值为 <strong>initValue</strong>，<strong>currentValue</strong> 取数组中的第一个值；如果没有提供 <strong>initValue</strong>，那么 <strong>previousValue</strong> 取数组中的第一个值，<strong>currentValue</strong> 取数组中的第二个值</p>
+<p><strong>initValue</strong>：作为第一次调用 <strong>callback</strong> 得第一个参数的初始值。（可选）</p>
+<p>返回值
+回调函数累计处理的结果</p>
+<h2>举几个例子</h2>
+<h3>求和</h3>
+<pre><code class="language-js">const arr = [1, 2, 3, 4, 5];
+const sum = arr.reduce((acc, cur) =&gt; acc + cur, 0);
+console.log(sum); // 15
+</code></pre>
+<h3>获取深层次对象</h3>
+<p>这个还挺实用，并且在一些面试还会问到</p>
+<pre><code class="language-js">const obj = {
+    a: {
+        b: {
+            c: {
+                d: '1'
+            },
+            e: null
+        }
+    }
+}
+
+function getValue(target, key) {
+    try {
+        return key.split('.').reduce((r, k) =&gt; r[k], target)
+    } catch (e) {
+        return undefined
+    }
+}
+
+getValue(obj, 'a.b.c.d') // 1
+getValue(obj, 'a.b.e') // null
+getValue(obj, 'a.b.e.f') // undefined
+</code></pre>
+<h3>求元素出现的次数</h3>
+<pre><code class="language-js">const nameList = ['张三', '李四', '王五', '王五', '王五', '李四']
+const nameNum = nameList.reduce((pre, cur) =&gt; {
+    if (cur in pre) {
+        pre[cur]++
+    } else {
+        pre[cur] = 1
+    }
+    return pre
+},{})
+</code></pre>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[快捷键打开vscode项目]]></title>
+            <description><![CDATA[<p>因为频繁用 vscode 打开文件夹，尽管有 Raycast 直接用快捷命令打开会更加方便许多，不用搜索等等。但是有时候记不起来项目名字，在目录中找到之后，还要拖动到 vscode 中，很是不方便，在 Mac 下，我们可以直接用 Automator 配置 Quick Action 来使用快捷键打开。</p>
+<ol>
+<li>先选择 Quick Action 配置来初始化。</li>
+</ol>
+<p><img src="/shortcuts1.png" alt="quick action">
+2. 按照图上配置</p>
+<pre><code class="language-bash">for f in &quot;$@&quot;
+do
+     open -a &quot;Visual Studio Code&quot; &quot;$f&quot;
+done
+</code></pre>
+<p><img src="/shortcuts2.png" alt="quick action"></p>
+<ol start="3">
+<li>按照此快捷打开方式就配置好了，可以右键项目在quick aciton查看，但是我们还是不想这么麻烦，可以再为此配置一下快捷键的方式。在键盘里面配置一下刚刚做好的quick action的打开方式即可</li>
+</ol>
+<p><img src="/shortcuts3.png" alt="quick action"></p>
+<p>至此，我们就可以选中项目后，使用 <code>command + G</code> 来打开项目了。</p>
+<p>大多数我们都可以通过 Raycast 的快速搜索打开，这个适用于记不起来名字，选中后直接快捷键打开。</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[ssh config]]></title>
+            <description><![CDATA[<h1>ssh config</h1>
+<p>When we have other platforms like GitHub and GitLab on our personal computer, the Git info we submit is globally configured through <code>git config</code>, which is not what we want. However, setting up Git config separately for each project can be very cumbersome. In this case, we can use <code>ssh config</code> to differentiate multiple platforms.</p>
+<p>Run <code>ssh-keygen -t rsa -f ~/.ssh/&lt;filename&gt;</code>. Here we set the filename to <code>id_rsa_github</code>.</p>
+<p>Add the generated public key to GitHub SSH key.</p>
+<p>Then execute <code>mkdir ~/.ssh/config</code>.</p>
+<p>Copy the following content into it:</p>
+<pre><code class="language-bash"># GitHub
+Host github.com
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_rsa_github
+
+# GitLab
+Host gitlab.com
+  HostName gitlab.com
+  User git
+  IdentityFile ~/.ssh/id_rsa_gitlab
+</code></pre>
+<p>Make sure that the <code>IdentityFile</code> path is the path of the key you generated.</p>
+<p>Then execute <code>ssh -T git@github.com</code> to see if the connection is successful.</p>
+<p>This way, whether you submit to GitLab or GitHub repositories, the corresponding config information can be automatically recognized.</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[structuredClone]]></title>
+            <description><![CDATA[<h1>structuredClone</h1>
+<p><code>ECMAScript 2021</code> 出来的新特性 <code>structuredClone</code> ，就再也不需要使用<code>JSON.parse(JSON.stringify(obj)</code></p>
+<h2>TL;DR;</h2>
+<p><code>structuredClone</code> 不能克隆以下情况：</p>
+<ul>
+<li>Function</li>
+<li>DOM</li>
+<li>Property description: getter /  setter</li>
+<li>Object prototypes</li>
+</ul>
+<p>除此之外的克隆需要，都可以用<code>structuredClone</code> ，可以覆盖大部分场景了。</p>
+<h2>介绍</h2>
+<p><code>structuredClone</code> 是内置在 <code>JavaScript</code>  中的。功能 ≥  <code>JSON.parse(JSON.stringify())</code></p>
+<p>我们先看看在实战中的作用</p>
+<pre><code class="language-jsx">const obj = {
+	name: 'demo',
+	date: new Date(),
+	arr: [{a:1},{b:2}],
+	set: new Set([1,2,1]),
+	map: new Map([[1,2]]),
+	regex: /test/,
+	error: new Error('test')
+}
+
+obj.circular = obj;
+
+const clone = structuredClone(obj) //  ✅
+</code></pre>
+<p>有了上述明显的代码展示，一下子就能看出来和平常我们用的 <code>JSON.parse</code>的区别了。</p>
+<p><code>struturedClone</code> 不仅是深度克隆，还可以克隆时间，正则，甚至循环引用！!</p>
+<h2>总结</h2>
+<p><a href="https://caniuse.com/?search=structuredClone">structuredClone</a> 算是一个较新的 API ， 在内部项目或者side project，我们都可以使用最新的API来进行开发，感受一下新技术的便捷。该API可以覆盖大部分的场景了，满足日常的克隆需要～ 以后就用它！</p>
+<blockquote>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/structuredClone">structuredClone() - Web APIs | MDN</a></p>
+</blockquote>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[小程序使用 lottie-miniprogram 问题]]></title>
+            <description><![CDATA[<h1>lottie-miniprogram</h1>
+<p>在小程序业务中使用 UI 同学给的 json 文件，使用 lottie 做成动画时，遇到两个问题。</p>
+<ul>
+<li>动画有齿痕，不清晰</li>
+<li>windows 上会报错，<code>TypeError: Cannot read properties of undefined (reading 'requestAnimationFrame')</code></li>
+</ul>
+<p>解决方案：</p>
+<ul>
+<li>不清晰</li>
+</ul>
+<pre><code class="language-js">const canvas = res.node
+const context = canvas.getContext('2d')
+const { pixelRatio: dpr = 2 } = systemInfo.value
+canvas.width = 56 * dpr
+canvas.height = 56 * dpr
+context.scale(dpr, dpr)
+lottie.setup(canvas)
+</code></pre>
+<ul>
+<li>window bug</li>
+</ul>
+<pre><code class="language-js">const myAnim = lottie.loadAnimation({})
+// 卸载或者不使用的时候需要暂停
+onUnload(() =&gt; {
+  myAnim?.pause()
+})
+</code></pre>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[zsh 小技巧]]></title>
+            <description><![CDATA[<h1>zsh 小技巧</h1>
+<p>我们先运行 <code>man zshbuiltins</code> 查看说明</p>
+<p><img src="/man.png" alt="manImage"></p>
+<p>通过手册例子，我们可以看到，设置 -s 后缀别名后，会替换为 <code>value text.name</code></p>
+<p>还是在实际中我们运用一下，看看能做什么，比如输入文件名称直接查看文件内容，当然你也可以使用 <code>bat</code></p>
+<pre><code class="language-bash"># ./index.html =&gt; cat ./index.html
+# 直接输入 index.html 就可以查看内容了
+alias -s {js,json,env,md,html,css,toml}=cat
+</code></pre>
+<pre><code class="language-bash">alias -s git=&quot;git clone --depth 1&quot;
+</code></pre>
+<p>这样以后直接复制 ssh git 到终端就可以啦
+<img src="/clone.png" alt="clone"></p>
+]]></description>
+        </item>
+    </channel>
+</rss>
